@@ -83,10 +83,8 @@ class FTPStorage(Storage):
 
         # Real reconnect
         if self._connection is None:
-            ftp = ftplib.FTP()
             try:
-                ftp.connect(self._config['host'], self._config['port'])
-                ftp.login(self._config['user'], self._config['passwd'])
+                ftp = ftplib.FTP(self._config['host'], self._config['user'], self._config['passwd'])
                 if self._config['active']:
                     ftp.set_pasv(False)
                 if self._config['path'] != '':
